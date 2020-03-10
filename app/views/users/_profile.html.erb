@@ -10,6 +10,11 @@
 			<th>introduction</th>
 			<th><%= user.introduction %></th>
 		</tr>
+		<tr>
+			<% unless  current_user.id == @user.id  %>
+			<th><%= link_to "chat_start",chat_path(user.id) %></th>
+			<% end %>
+		</tr>
 </table>
 
 <div class="row">

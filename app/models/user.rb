@@ -2,7 +2,7 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable,:validatable
+  :recoverable, :rememberable, :trackable,:validatable
 
   attachment :profile_image
   attachment :image
@@ -11,5 +11,9 @@ class User < ApplicationRecord
   validates :name, presence: true, length: {maximum: 20, minimum: 2}
   validates :introduction,length: { maximum: 50 }
   has_many :books,dependent: :destroy
+  has_many :rooms, through: :user_rooms
+  has_many :user_rooms,dependent: :destroy
+  has_many :chats
+
 
 end
